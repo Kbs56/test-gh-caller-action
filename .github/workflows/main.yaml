@@ -16,5 +16,6 @@ jobs:
           echo $run_id
           gh run watch $run_id --repo Kbs56/test-gh-action
           gh run download $run_id --repo Kbs56/test-gh-action --dir artifact
+          ls -lart
           cd artifact
           cat world.txt
