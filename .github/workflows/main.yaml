@@ -14,3 +14,7 @@ jobs:
           sleep 3s
           run_id=$(gh run list --workflow main.yaml --repo Kbs56/test-gh-action --limit 1 --json databaseId | jq -r '.[0].databaseId')
           echo $run_id
+          gh run watch $run_id 
+          gh run download $run_id --dir artifact
+          cd artifact
+          cat world.txt
