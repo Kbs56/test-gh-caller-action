@@ -18,4 +18,5 @@ jobs:
           gh run download $run_id --repo Kbs56/test-gh-action --dir artifact
           ls -lart
           cd artifact
+          ls -lart
           cat world.txt
