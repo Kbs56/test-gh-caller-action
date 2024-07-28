@@ -17,10 +17,7 @@ jobs:
           echo $run_id
           gh run watch $run_id --repo Kbs56/test-gh-action
           gh run download $run_id --repo Kbs56/test-gh-action
-          ls -lart
           cd my-artifact
-          ls -lart
-          cat test.json
           app_name=$(jq -r '.app_name' test.json)
           app_version=$(jq -r '.app_version' test.json)
           echo "app_name=$app_name" >> $GITHUB_OUTPUT
