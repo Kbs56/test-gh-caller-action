@@ -1,0 +1,16 @@
+name: Call Workflow and Get Arifact
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Call-Workflow-and-Get-Data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Workflow
+        run: |
+          gh auth login --with-token ${{ secrets.GH_TOKEN }}
+          gh workflow run --repo Kbs56/test-gh-action
+          sleep 2s
+          run_id=$(gh run list --workflow main.yaml --limit 1 --json databaseId | jq -r '.[0].databaseId')
+          echo $run_id
