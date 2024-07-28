@@ -8,9 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Call Workflow
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          echo "${{ secrets.GH_TOKEN }} | gh auth login --with-token
           gh workflow run main.yaml --repo Kbs56/test-gh-action
           sleep 2s
           run_id=$(gh run list --workflow main.yaml --limit 1 --json databaseId | jq -r '.[0].databaseId')
