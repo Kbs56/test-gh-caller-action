@@ -33,5 +33,5 @@ jobs:
 
       - name: Set as Vars in Target Repo
         run: |
-          gh variable set APP_NAME --body ${{ steps.get-ids.outputs.app_name }}
-          gh variable set APP_VERSION --body ${{ steps.get-ids.outputs.app_version }}
+          gh variable set APP_NAME --body ${{ steps.get-ids.outputs.app_name }} --repo Kbs56/test-gh-action
+          gh variable set APP_VERSION --body ${{ steps.get-ids.outputs.app_version }} --repo Kbs56/test-gh-action
