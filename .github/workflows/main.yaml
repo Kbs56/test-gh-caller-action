@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Call Workflow
+        id: get-ids
         run: |
           echo "${{ secrets.GH_TOKEN }}" | gh auth login --with-token
           gh workflow run main.yaml --repo Kbs56/test-gh-action
@@ -19,4 +20,13 @@ jobs:
           ls -lart
           cd my-artifact
           ls -lart
-          cat world.txt
+          cat test.json
+          app_name=$(jq -r '.app_name' test.json)
+          app_version=$(jq -r '.app_version' test.json)
+          echo "app_name=$app_name" >> $GITHUB_OUTPUT
+          echo "app_version=$app_version" >> $GITHUB_OUTPUT
+
+      - name: Echo Outputs
+        run: |
+          echo ${{ steps.get-ids.outputs.app_name }}
+          echo ${{ steps.get-ids.outputs.app_version }}
