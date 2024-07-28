@@ -15,8 +15,8 @@ jobs:
           run_id=$(gh run list --workflow main.yaml --repo Kbs56/test-gh-action --limit 1 --json databaseId | jq -r '.[0].databaseId')
           echo $run_id
           gh run watch $run_id --repo Kbs56/test-gh-action
-          gh run download $run_id --repo Kbs56/test-gh-action --dir artifact
+          gh run download $run_id --repo Kbs56/test-gh-action
           ls -lart
-          cd artifact
+          cd my-artifact
           ls -lart
           cat world.txt
